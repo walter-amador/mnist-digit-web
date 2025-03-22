@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MNIST</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-cpu"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite/dist/tf-tflite.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+    />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>
+        An Ensemble of Simple Convolutional Neural Network Models for MNIST
+        Digit Recognition
+      </h1>
+      <nav class="navigation">
+        <ul>
+          <li>
+            <a href="/" class="active">Demo</a>
+          </li>
+          <li>
+            <a href="/pages/training/training.html">Training</a>
+          </li>
+          <li>
+            <a href="/pages/references/references.html">References</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="burger">
+        <i class="fi fi-br-menu-burger"></i>
+      </button>
+    </header>
+    <main>
+      <div class="canvas-container">
+        <div class="title-container">
+          <h2>Draw a digit</h2>
+          <p>
+            Draw a digit (0 - 9) in the canvas below and click the predict button to see
+            the prediction.
+          </p>
+        </div>
+        <canvas id="canvas" width="280" height="280"></canvas>
+        <div class="buttons-container">
+          <button id="clearCanvas">Clear Canvas</button>
+          <button id="predict">Predict</button>
+        </div>
+      </div>
+      <div class="model-container">
+        <h2>Models</h2>
+        <div class="models">
+          <div>
+            <h3>M3</h3>
+            <div class="preview"></div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 32ch), BatchNorm2d(32), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 48ch), BatchNorm2d(48), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 64ch), BatchNorm2d(64), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 80ch), BatchNorm2d(80), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 96ch), BatchNorm2d(96), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 112ch), BatchNorm2d(112), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 128ch), BatchNorm2d(128), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 144ch), BatchNorm2d(144), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 160ch), BatchNorm2d(160), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(3x3, 176ch), BatchNorm2d(176), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Linear(11264, 10), BatchNorm1d(10)</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-result">
+              <p>Result: <span id="result-m3"></span></p>
+              <p>Confidence: <span id="confidence-m3"></span></p>
+            </div>
+          </div>
+          <div>
+            <h3>M5</h3>
+            <div class="preview"></div>
+            <div class="model-layer">
+              <span>Conv2d(5x5, 32ch), BatchNorm2d(32), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(5x5, 64ch), BatchNorm2d(64), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(5x5, 96ch), BatchNorm2d(96), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(5x5, 128ch), BatchNorm2d(128), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(5x5, 160ch), BatchNorm2d(160), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Linear(11264, 10), BatchNorm1d(10)</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-result">
+              <p>Result: <span id="result-m5"></span></p>
+              <p>Confidence: <span id="confidence-m5"></span></p>
+            </div>
+          </div>
+          <div>
+            <h3>M7</h3>
+            <div class="preview"></div>
+            <div class="model-layer">
+              <span>Conv2d(7x7, 48ch), BatchNorm2d(48), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(7x7, 96ch), BatchNorm2d(96), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(7x7, 144ch), BatchNorm2d(144), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Conv2d(7x7, 192ch), BatchNorm2d(192), ReLu</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-layer">
+              <span>Linear(11264, 10), BatchNorm1d(10)</span>
+            </div>
+            <div class="layer-connection">
+              <i class="fi fi-br-arrow-alt-down"></i>
+            </div>
+            <div class="model-result">
+              <p>Result: <span id="result-m7"></span></p>
+              <p>Confidence: <span id="confidence-m7"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="final-result-container">
+        <h2>Final Result</h2>
+        <div class="final-result">
+          <p>Result: <span id="final-result"></span></p>
+        </div>
+      </div>
+    </main>
+
+    <script src="global.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
