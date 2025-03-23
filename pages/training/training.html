@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MNIST</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-cpu"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite/dist/tf-tflite.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
@@ -38,10 +35,113 @@
       </button>
     </header>
     <main>
-      <h2>Still Working!</h2>
+      <img
+        class="gradient-descent-formula"
+        src="../../assets/gradient-descent-formula.png"
+        alt="gradient descent formula"
+      />
+      <h2>3 Layer Neural Network</h2>
+      <div class="arch-container">
+        <h3>Architecture (Hyperparameters)</h3>
+        <div class="configurations">
+          <div>
+            <label for="inputNeurons">Input Neurons</label>
+            <input
+              type="number"
+              name="inputNeurons"
+              id="inputNeurons"
+              value="784"
+              disabled
+            />
+          </div>
+          <div>
+            <label for="hiddenNeurons">Hidden Neurons</label>
+            <input
+              type="number"
+              name="hiddenNeurons"
+              id="hiddenNeurons"
+              value="2"
+              min="1"
+            />
+          </div>
+          <div>
+            <label for="outputNeurons">Output Neurons</label>
+            <input
+              type="number"
+              name="outputNeurons"
+              id="outputNeurons"
+              value="4"
+              min="1"
+            />
+          </div>
+          <div>
+            <label for="positionLabel">Number Label</label>
+            <input
+              type="number"
+              name="positionLabel"
+              id="positionLabel"
+              value="0"
+              min="0"
+            />
+            <p>
+              *Number label depends on the number of classes (outputs) that we
+              have
+            </p>
+          </div>
+          <div>
+            <label for="learningRate">Learning Rate</label>
+            <input
+              type="number"
+              name="learningRate"
+              id="learningRate"
+              value="0.5"
+              min="0.0001"
+              step="0.0001"
+              max="1"
+            />
+          </div>
+          <div>
+            <label for="epochs">Epochs</label>
+            <input
+              type="number"
+              name="epochs"
+              id="epochs"
+              value="100"
+              min="1"
+            />
+          </div>
+          <div>
+            <label for="demoSpeed">Demo Speed (MS)</label>
+            <input
+              type="number"
+              name="demoSpeed"
+              id="demoSpeed"
+              value="500"
+              step="100"
+              min="0"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="nn-container">
+        <div class="layer canvas-container">
+          <div class="buttons-container">
+            <button id="clearCanvas">Clear Canvas</button>
+            <button id="train">Train</button>
+          </div>
+          <canvas id="canvas" width="280" height="280"></canvas>
+        </div>
+        <div class="layer hidden-layer">
+          <!-- hidden neurons go here JS -->
+        </div>
+        <div class="layer output-layer">
+          <!-- output neurons go here JS -->
+        </div>
+        <svg id="connections"></svg>
+      </div>
     </main>
 
     <script src="../../global.js"></script>
-    <!-- <script src="index.js"></script> -->
+    <script src="training.js"></script>
   </body>
 </html>

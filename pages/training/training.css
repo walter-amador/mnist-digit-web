@@ -1,0 +1,120 @@
+main {
+  padding-block: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nn-container {
+  position: relative;
+  width: 100%;
+}
+
+.node {
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  border-radius: 50%;
+  position: relative;
+}
+
+.weights {
+  position: absolute;
+  top: -1rem;
+  display: flex;
+  gap: 4px;
+  z-index: 1;
+}
+.weight {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  padding: 2px;
+}
+.output {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
+}
+
+.layer {
+  display: flex;
+  justify-content: space-around;
+}
+.layer:not(:last-child) {
+  margin-bottom: 50px;
+}
+svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+line {
+  stroke: black;
+  stroke-width: 2;
+}
+
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-container .buttons-container {
+  display: flex;
+  gap: 10px;
+}
+.canvas-container .buttons-container button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  cursor: pointer;
+}
+
+h2 {
+  text-align: center;
+}
+
+.arch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 20px;
+}
+
+.arch-container h3 {
+  margin-bottom: 10px;
+}
+
+.arch-container .configurations {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gradient-descent-formula {
+  width: 300px;
+}
+
+.final-result {
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  .nn-container {
+    position: relative;
+    max-width: 90%;
+  }
+
+  .gradient-descent-formula {
+    position: fixed;
+    width: 300px;
+    right: 10%;
+  }
+}
